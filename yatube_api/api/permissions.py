@@ -1,9 +1,20 @@
 from rest_framework import permissions
 
 
-class IsAuthorOrReadOnlyPermission(permissions.BasePermission):
+class AuthorPermission(permissions.BasePermission):
+    """Пермишен для автор"""
+
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        return obj.author == request.user
+
+
+class FollowPermission(permissions.BasePermission):
+    """Пермишен для подписки"""
+
     def has_object_permission(self, request, view, obj):
         return (
-            obj.author == request.user
-            or request.method in permissions.SAFE_METHODS
+            request.method in permissions.SAFE_METHODS
+            or obj.author == request.user
         )
