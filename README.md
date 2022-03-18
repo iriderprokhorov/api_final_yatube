@@ -1,9 +1,16 @@
-### Как запустить проект:
+### API проекта Yatube:
+
+Данный проект представляет API к сервису для публикации постов
+
+В нем реализована возможность получения списков постов,комментариев и подписок
+
+
+### Установка:
 
 Клонировать репозиторий и перейти в него в командной строке:
 
 ```
-git clone https://github.com/yandex-praktikum/kittygram.git
+git clone git@github.com:iriderprokhorov/api_final_yatube.git
 ```
 
 ```
@@ -40,4 +47,45 @@ python3 manage.py migrate
 
 ```
 python3 manage.py runserver
+```
+### Примеры
+
+1.Получить список всех публикаций. При указании параметров limit и offset выдача должна работать с пагинацией.:
+
+```
+GET /api/v1/posts
+```
+Удачное выполнение
+
+```
+{
+
+    "count": 123,
+    "next": "http://api.example.org/accounts/?offset=400&limit=100",
+    "previous": "http://api.example.org/accounts/?offset=200&limit=100",
+    "results": 
+
+[
+
+        {}
+    ]
+
+}
+
+```
+2.Создание публикации:
+
+```
+POST /api/v1/posts
+```
+Удачное выполнение
+
+{
+
+    "text": "string",
+    "image": "string",
+    "group": 0
+
+}
+
 ```
