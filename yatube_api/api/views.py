@@ -1,12 +1,12 @@
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
-from rest_framework import filters, mixins, permissions, status, viewsets
+from rest_framework import filters, permissions, status, viewsets
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
 
 from posts.models import Comment, Follow, Group, Post
 
-from .permissions import AuthorPermission, FollowPermission
+from .permissions import AuthorPermission
 from .serializers import (
     CommentSerializer,
     FollowSerializer,
