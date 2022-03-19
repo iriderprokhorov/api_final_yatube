@@ -16,6 +16,7 @@ from .serializers import (
 
 
 class PostViewSet(viewsets.ModelViewSet):
+
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
@@ -63,7 +64,7 @@ class FollowViewSet(viewsets.ModelViewSet):
     serializer_class = FollowSerializer
     permission_classes = (permissions.IsAuthenticated,)
     filter_backends = (filters.SearchFilter,)
-    search_fields = ("user__username", "following__username")
+    search_fields = ("=user__username", "=following__username")
 
     def get_queryset(self):
         return Follow.objects.filter(user=self.request.user.id)
